@@ -6,6 +6,9 @@ Module Documentation
 """
 
 class User(Base):
+    """
+    Class Documentation
+    """
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     email = Column(String)
