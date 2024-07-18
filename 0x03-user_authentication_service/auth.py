@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" doc doc doc """
+""" Documentaion """
 
 from db import DB
 from user import User
@@ -10,12 +10,12 @@ from typing import TypeVar
 
 
 def _hash_password(password: str) -> bytes:
-    """doc doc doc"""
+    """ Documentaion """
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
 
 
 def _generate_uuid() -> str:
-    """doc doc doc"""
+    """ Documentaion """
     return str(uuid.uuid4())
 
 
@@ -23,13 +23,13 @@ UserT = TypeVar("UserT", bound=User)
 
 
 class Auth:
-    """Auth class to interact with the authentication database."""
+    """ Auth class to interact with the authentication database. """
 
     def __init__(self):
         self._db = DB()
 
     def valid_login(self, email: str, password: str) -> bool:
-        """doc doc doc"""
+        """ Documentaion """
         try:
             user = self._db.find_user_by(email=email)
             return bcrypt.checkpw(password.encode(), user.hashed_password)
@@ -37,7 +37,7 @@ class Auth:
             return False
 
     def register_user(self, email: str, password: str) -> User:
-        """doc doc doc"""
+        """ Documentaion """
         try:
             self._db.find_user_by(email=email)
             raise ValueError(f"User {email} already exists")
@@ -46,7 +46,7 @@ class Auth:
             return user
 
     def create_session(self, email: str) -> str:
-        """doc doc doc"""
+        """ Documentaion """
         try:
             user = self._db.find_user_by(email=email)
             session_id = _generate_uuid()
@@ -56,7 +56,7 @@ class Auth:
             return None
 
     def get_user_from_session_id(self, session_id: str) -> UserT:
-        """doc doc doc"""
+        """ Documentaion """
         if session_id is None:
             return None
 
@@ -66,11 +66,11 @@ class Auth:
             return None
 
     def destroy_session(self, user_id: int) -> None:
-        """doc doc doc"""
+        """ Documentaion """
         self._db.update_user(user_id, session_id=None)
 
     def get_reset_password_token(self, email: str) -> str:
-        """doc doc doc"""
+        """ Documentaion """
         try:
             user = self._db.find_user_by(email=email)
         except NoResultFound:
@@ -82,7 +82,7 @@ class Auth:
         return reset_token
 
     def update_password(self, reset_token: str, password: str) -> None:
-        """doc doc doc"""
+        """ Documentation """
         if reset_token is None or password is None:
             raise ValueError
 
