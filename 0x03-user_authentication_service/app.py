@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" doc doc doc """
+"""  Documentation  """
 from flask import Flask, jsonify, request, make_response
 from flask import abort, Response, redirect
 from auth import Auth
@@ -10,7 +10,7 @@ AUTH = Auth()
 
 @app.route("/sessions", methods=["POST"], strict_slashes=False)
 def login() -> Response:
-    """doc doc doc"""
+    """ Documentation """
     email = request.form.get("email")
     password = request.form.get("password")
 
@@ -25,7 +25,7 @@ def login() -> Response:
 
 @app.route("/users", methods=["POST"])
 def users() -> Response:
-    """doc doc doc"""
+    """ Documentation """
     email = request.form["email"]
     password = request.form["password"]
     try:
@@ -37,13 +37,13 @@ def users() -> Response:
 
 @app.route("/", methods=["GET"])
 def welcome() -> Response:
-    """doc doc doc"""
+    """ Documentation """
     return jsonify({"message": "Bienvenue"})
 
 
 @app.route("/sessions", methods=["DELETE"], strict_slashes=False)
 def logout() -> Response:
-    """doc doc doc"""
+    """ Documentation """
     session_id = request.cookies.get("session_id")
     user = AUTH.get_user_from_session_id(session_id)
     if user is None:
@@ -54,7 +54,7 @@ def logout() -> Response:
 
 @app.route("/profile", methods=["GET"], strict_slashes=False)
 def profile() -> Response:
-    """doc doc doc"""
+    """ Documentation """
     session_id = request.cookies.get("session_id")
 
     user = AUTH.get_user_from_session_id(session_id)
@@ -67,7 +67,7 @@ def profile() -> Response:
 
 @app.route("/reset_password", methods=["POST"], strict_slashes=False)
 def get_reset_password_token() -> str:
-    """doc doc doc"""
+    """ Documentation """
     email = request.form.get("email")
 
     try:
@@ -80,7 +80,7 @@ def get_reset_password_token() -> str:
 
 @app.route("/reset_password", methods=["PUT"], strict_slashes=False)
 def update_password() -> str:
-    """doc doc doc"""
+    """ Documentation """
     email = request.form.get("email")
     reset_token = request.form.get("reset_token")
     new_password = request.form.get("new_password")
