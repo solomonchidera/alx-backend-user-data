@@ -9,6 +9,7 @@ Module Documentation
 
 Base = declarative_base()
 
+
 class User(Base):
     """
     Class Documentation
