@@ -14,7 +14,10 @@ class User(Base):
     """
     Class Documentation
     """
+
+
     __tablename__ = 'users'
+
     id = Column(Integer, primary_key=True)
     email = Column(String(250), nullable=False)
     hashed_passsword = Column(String(250), nullable=False)
